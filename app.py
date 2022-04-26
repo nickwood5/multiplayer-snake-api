@@ -11,6 +11,7 @@ connected_ids = []
 
 @app.route('/remove/<int:id>/')
 def remove(id):
+    print("REMOVE CALLED")
     if id in connected_ids:
         connected_ids.remove(id)
         resp = flask.make_response(jsonify({"API": "success"}))
@@ -26,6 +27,7 @@ def hello():
 
 @app.route('/get/')
 def get(id):
+    print("GET CALLED")
     id = 0
     while id in connected_ids:
         id += 1
