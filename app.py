@@ -1,12 +1,19 @@
 from flask import Flask, jsonify
-import flask
+import flask, websockets
 from waitress import serve
+
+
+async def get_user_id():
+    async with websockets.connect("ws://127.0.0.1:8765") as websocket:
+        user_id = await websocket.recv()
+        return user_id
 
 app = Flask(__name__)
 
 @app.route('/')
-def aaaa():
-    resp = flask.make_response(jsonify({"Nick API": "ONLINE"}))
+async def aaaa():
+    user_id = await get_user_id()
+    resp = flask.make_response(jsonify({"Nick API": user_id}))
     return resp
 
 if __name__ == '__main__':
