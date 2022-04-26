@@ -1,10 +1,12 @@
 from importlib.resources import Resource
 from flask import Flask, jsonify
 import flask
+from flask_cors import CORS
 from waitress import serve
 from flask_restful import Api
 
 app = Flask(__name__)
+CORS(app)
 
 connected_ids = []
 
