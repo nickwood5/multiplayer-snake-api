@@ -1,12 +1,10 @@
 from flask import Flask, jsonify
-from flask_cors import CORS
 import flask
 from waitress import serve
 
 app = Flask(__name__)
-CORS(app)
 
-@app.route('/ping', methods=['GET', 'POST'])
+@app.route('/')
 def aaaa():
     resp = flask.make_response(jsonify({"Nick API": "ONLINE"}))
     return resp
