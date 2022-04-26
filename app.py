@@ -4,7 +4,7 @@ from waitress import serve
 
 
 async def get_user_id():
-    async with websockets.connect("ws://redis:8765") as websocket:
+    async with websockets.connect("ws://127.0.0.1:8765") as websocket:
         user_id = await websocket.recv()
         return user_id
 
