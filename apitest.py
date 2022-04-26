@@ -1,9 +1,5 @@
-import asyncio
-import websockets
+import requests
 
-async def hello():
-    async with websockets.connect("ws://127.0.0.1:8765") as websocket:
-        a = await websocket.recv()
-        print(a)
+a = requests.get("http://multiplayer-snake-api-nickwood5-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com/")
 
-asyncio.run(hello())
+print(a.json())

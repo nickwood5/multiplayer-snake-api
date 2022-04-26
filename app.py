@@ -1,6 +1,6 @@
 from importlib.resources import Resource
 from flask import Flask, jsonify
-import flask, websockets
+import flask
 from waitress import serve
 from flask_restful import Api
 

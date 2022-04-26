@@ -1,5 +1,5 @@
 flask
 flask_cors
 waitress
-websockets
 aioflask
+flask_restful
