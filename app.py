@@ -19,6 +19,11 @@ def remove(id):
     print("Connected ids is now {}".format(connected_ids))
     return resp
 
+@app.route('/')
+def hello():
+    resp = flask.make_response(jsonify({"API": "HI"}))
+    return resp
+
 @app.route('/get/')
 def get(id):
     id = 0
