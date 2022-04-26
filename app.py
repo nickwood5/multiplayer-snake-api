@@ -13,7 +13,7 @@ app = Flask(__name__)
 @app.route('/')
 async def aaaa():
     user_id = await get_user_id()
-    resp = flask.make_response(jsonify({"Nick API": user_id}))
+    resp = flask.make_response(jsonify({"Nick API": "HELLO"}))
     return resp
 
 if __name__ == '__main__':
