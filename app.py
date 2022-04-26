@@ -5,7 +5,6 @@ from waitress import serve
 from flask_restful import Api
 
 app = Flask(__name__)
-api = Api(app)
 
 connected_ids = []
 
@@ -26,7 +25,7 @@ def hello():
     return resp
 
 @app.route('/get/')
-def get(id):
+def get():
     print("GET CALLED")
     id = 0
     while id in connected_ids:
