@@ -1,4 +1,3 @@
-from importlib.resources import Resource
 from flask import Flask, jsonify
 import flask
 from flask_cors import CORS
@@ -7,6 +6,12 @@ from flask_restful import Api
 
 app = Flask(__name__)
 CORS(app)
+
+host = '0.0.0.0'
+port = 8080
+
+#host = 'localhost'
+#port = 8766
 
 connected_ids = []
 
@@ -37,4 +42,4 @@ def get():
     return resp
 
 if __name__ == '__main__':
-    serve(app, host='0.0.0.0', port=8080)
+    serve(app, host=host, port=port)
