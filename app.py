@@ -4,14 +4,17 @@ from flask_cors import CORS
 from waitress import serve
 from flask_restful import Api
 
+local_host = False
+
+if local_host:
+    address = 'localhost'
+    port = 8766
+else:
+    address = "0.0.0.0"
+    port = 8080
+
 app = Flask(__name__)
 CORS(app)
-
-host = '0.0.0.0'
-port = 8080
-
-#host = 'localhost'
-#port = 8766
 
 connected_ids = []
 
@@ -42,4 +45,4 @@ def get():
     return resp
 
 if __name__ == '__main__':
-    serve(app, host=host, port=port)
+    serve(app, host=address, port=port)
