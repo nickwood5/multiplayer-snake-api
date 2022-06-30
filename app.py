@@ -1,14 +1,14 @@
 from flask import Flask, jsonify
-import flask
+import flask, time, asyncio, threading, uuid
 from flask_cors import CORS
 from waitress import serve
 from flask_restful import Api
 
-local_host = False
+local_host = True
 
 if local_host:
     address = 'localhost'
-    port = 8766
+    port = 8769
 else:
     address = "0.0.0.0"
     port = 8080
@@ -18,17 +18,6 @@ CORS(app)
 
 connected_ids = []
 
-@app.route('/remove/<int:id>/')
-def remove(id):
-    print("REMOVE CALLED")
-    if id in connected_ids:
-        connected_ids.remove(id)
-        resp = flask.make_response(jsonify({"API": "success"}))
-    else:
-        resp = flask.make_response(jsonify({"API": "id_does_not_exist"}))
-    print("Connected ids is now {}".format(connected_ids))
-    return resp
-
 @app.route('/')
 def hello():
     resp = flask.make_response(jsonify({"API": "HI"}))
@@ -36,13 +25,11 @@ def hello():
 
 @app.route('/get/')
 def get():
-    print("GET CALLED")
-    id = 0
-    while id in connected_ids:
-        id += 1
-    connected_ids.append(id)
+    id = uuid.uuid4()
+    print("Adding user {}".format(id))
     resp = flask.make_response(jsonify({"id": id}))
     return resp
 
-if __name__ == '__main__':
-    serve(app, host=address, port=port)
+
+serve(app, host=address, port=port)
+
